@@ -1,0 +1,22 @@
+{
+  "name": "parttime-2",
+  "version": "1.0.0",
+  "description": "Technical Test",
+  "main": "index.js",
+  "scripts": {
+    "test": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhamadsani/Technical-Test.git"
+  },
+  "keywords": [
+    "nursani"
+  ],
+  "author": "Rhamad Nursani Sidik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rhamadsani/Technical-Test/issues"
+  },
+  "homepage": "https://github.com/rhamadsani/Technical-Test#readme"
+}
