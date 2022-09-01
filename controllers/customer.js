@@ -23,6 +23,11 @@ const customer = (req, res) => {
 //         return res.status(e.status).send(e);
 //       }
 //     });
+
+    const city = req.query.city;
+    if(city){
+        console.log('has query param '+city)
+    }
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify({ a: 1 }));
 };
