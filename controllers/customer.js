@@ -1,5 +1,4 @@
 const dbo = require("../db/connection");
-var ObjectId = require("mongodb").ObjectID;
 const customer = (req, res) => {
     let city = req.query.city ? req.query.city : req.body.city;
     const dbConnect = dbo.getDb();
