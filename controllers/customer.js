@@ -1,36 +1,27 @@
-// const zlFetch = require("zl-fetch").default;
-// const isProduction = process.env.NODE_ENV === "production";
-// const jwt = require("jsonwebtoken");
-// TODO: Add URLs utils somewhere
-// let host = isProduction
-//   ? `https://api-course.herokuapp.com`
-//   : `http://localhost:4000`;
-
+const dbo = require("../db/connection");
+var ObjectId = require("mongodb").ObjectID;
 const customer = (req, res) => {
-//   const pathname = req.originalUrl.replace("/transfer", "");
-//   const token = jwt.sign({}, process.env.COURSE_SECRET);
+    let city = req.query.city ? req.query.city : req.body.city;
+    const dbConnect = dbo.getDb();
+    let query = {};
 
-//   zlFetch(`${host}${pathname}`, {
-//     method: req.method,
-//     token,
-//     body: req.body,
-//   })
-//     .then((r) => res.send(r))
-//     .catch((e) => {
-//       if (e.code === "ECONNREFUSED") {
-//         return res.status(503).send(e);
-//       } else {
-//         return res.status(e.status).send(e);
-//       }
-//     });
-
-    const city = req.query.city;
     if(city){
-        console.log('has query param '+city)
+        query.address = new RegExp(".*" + city + ".*");
     }
-    res.setHeader("Content-Type", "application/json");
-    res.end(JSON.stringify({ a: 1 }));
+
+    dbConnect
+      .collection("customers")
+      .find(query)
+      .limit(50)
+      .toArray(function (err, result) {
+        if (err) {
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify(err));
+        } else {
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify(result));
+        }
+      });
 };
 
 module.exports = customer;
-

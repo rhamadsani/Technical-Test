@@ -3,7 +3,6 @@ const dbo = require("../db/connection");
 var ObjectId = require("mongodb").ObjectID;
 const blocks = (req, res) => {
     const dbConnect = dbo.getDb();
-
     dbConnect
       .collection("blocks")
       .aggregate([
